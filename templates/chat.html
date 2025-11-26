@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickChat - Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div id="chat"></div>
+   
+    <form id="chatForm" align="center" autocomplete="off">
+    <input type="text" id="msgInput" name="msg" placeholder="Type here..."
+           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
+</form>
+
+    <script>
+        const chatDiv = document.getElementById("chat");
+        const form = document.getElementById("chatForm");
+        const input = document.getElementById("msgInput");
+        input.setAttribute("autocomplete", "off");
+        input.setAttribute("autocorrect", "off");
+        input.setAttribute("autocapitalize", "off");
+        input.setAttribute("spellcheck", "false");
+
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const userMessage = document.createElement("p");
+            userMessage.align = "center";
+            userMessage.innerHTML = `<b style="color: rgb(158, 55, 255)">You:</b> ${msg}`;
+            chatDiv.appendChild(userMessage);
+
+            input.value = "";
+
+            const res = await fetch("/api/chat", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({msg})
+            });
+
+            const data = await res.json();
+
+            const aiMessage = document.createElement("p");
+            aiMessage.align = "center";
+            aiMessage.innerHTML = `<b style="color: rgb(158, 55, 255)">AI:</b> ${data.response}`;
+            chatDiv.appendChild(aiMessage)
+
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        });
+    </script>
+
+</body>
+</html>

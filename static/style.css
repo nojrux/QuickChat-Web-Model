@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+input {
+    border-color: rgb(158, 55, 255);
+    width: 350px;
+    height: 35px;
+    border-radius: 50px;
+    border-width: 7.5px;
+    text-align: center;
+    font-family: cursive;
+    font-size: medium;
+}
+
+h1 {
+    margin-top: 25px;
+    margin-left: 25px;
+    text-align: left;
+    font-family: cursive;
+}
+
+a {
+    margin-top: 25px;
+    margin-left: 25px;
+    text-align: left;
+    font-family: cursive;
+    font-size: large;
+    color: black;
+}
+
+hr {
+    line-height: 50px;
+}
+
+
+
+#chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 50px;
+    max-height: calc(100vh - 100px);
+}
+
+#chat p {
+    word-wrap: break-word;
+    margin: 0;
+    margin-left: 500px;
+    margin-right: 500px;
+    padding: 5px;
+    text-align: left;
+    font-family: cursive;
+    font-size: medium;
+}
+
+#chatForm {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    padding: 10px; 
+}
