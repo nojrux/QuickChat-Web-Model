@@ -64,3 +64,10 @@ hr {
     background: white;
     padding: 10px; 
 }
+
+@media (max-width: 600px) {
+    #chat p {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
