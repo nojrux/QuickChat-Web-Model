@@ -1,7 +1,7 @@
 from openai import OpenAI
 import os
 
-os.getenv("MY_SECRET")
+MY_SECRET = os.environ.get("MY_SECRET")
 
 client = OpenAI(
     api_key=MY_SECRET,
