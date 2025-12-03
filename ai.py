@@ -7,7 +7,7 @@ client = OpenAI(
 
 def chatbot(messages):
     response = client.chat.completions.create(
-        model="gemini-2.0-flash",
+        model="gemini-2.5-flash",
         messages=messages
     )
     return response.choices[0].message.content
