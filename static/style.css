@@ -12,7 +12,7 @@ input {
     border-radius: 50px;
     border-width: 7.5px;
     text-align: center;
-    font-family: cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
 }
 
@@ -20,20 +20,51 @@ h1 {
     margin-top: 25px;
     margin-left: 25px;
     text-align: left;
-    font-family: cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-a {
+h2 {
     margin-top: 25px;
     margin-left: 25px;
+    line-height: 10px;
     text-align: left;
-    font-family: cursive;
-    font-size: large;
-    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
 }
 
 hr {
     line-height: 50px;
+}
+
+
+
+#homeheader {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid; 
+}
+
+#homeheader img{
+    padding-right: 50px;
+}
+
+#homeheader a{
+    font-size: 25px;
+    padding-right: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    color: #2e2e2e;
+    text-decoration: none;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#homeheader a:hover{
+    background-color: rgb(158, 55, 255);
+    color: white;
+    border-radius: 15px;
+    transition: 0.3s;
 }
 
 
@@ -53,7 +84,7 @@ hr {
     margin-right: 500px;
     padding: 5px;
     text-align: left;
-    font-family: cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: medium;
 }
 
@@ -64,6 +95,8 @@ hr {
     background: white;
     padding: 10px; 
 }
+
+
 
 @media (max-width: 600px) {
     #chat p {

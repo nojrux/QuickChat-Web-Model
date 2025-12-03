@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickChat</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='QuickChat Title.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <header>
-        <h1>QuickChat Web-Model</h1>
+    <header id="homeheader">
+        <img src="{{ url_for('static', filename='QuickChat Title Cropped.png') }}" alt="Image not found" style="width: 307.2px; height: 60px; vertical-align: middle;">
         <a href="/">Home</a>
         <a href="/chat">Preview</a>
     </header>
 
     <hr>
 
-    
-
+    <div>
+        <h2 style="text-decoration: underline;">What is QuickChat and/or it's "Web Model"?</h2>
+        <h2>- QuickChat is a co-op non-profit app being made by Topic Duo.</h2>
+        <h2>- The "Web Model" is a web-accessable preview of the app and what it will look/function like once it's finished.</h2>
+        <br>
+        <h2 style="font-weight: bold;">EVERYTHING HERE IS STILL A WORK IN PROGRESS</h2>
+    </div>
 </body>
 </html>
