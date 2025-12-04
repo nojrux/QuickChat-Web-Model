@@ -42,8 +42,7 @@ hr {
     display: flex;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid; 
-    background-color: white;
+    border-bottom: 1px solid;
 }
 
 #homeheader img{
