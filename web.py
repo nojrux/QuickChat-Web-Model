@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 from ai import chatbot
 import os
+import random
+
+themenum = random.randint(1,20)
 
 app = Flask(__name__)
 
@@ -14,7 +17,7 @@ def shutdown_server():
 
 
 
-AIpers = 2
+AIpers = 1
 
 if AIpers == 1:
     messages = [
