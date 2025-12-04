@@ -43,7 +43,7 @@ def shutdown_server():
 
 
 
-AIpers = 1
+AIpers = 2
 
 if AIpers == 1:
     messages = [
