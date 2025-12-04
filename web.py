@@ -4,6 +4,7 @@ import os
 import random
 
 themenum = random.randint(1,20)
+theme = ""
 
 app = Flask(__name__)
 
