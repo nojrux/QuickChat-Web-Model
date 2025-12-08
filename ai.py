@@ -1,17 +1,21 @@
-from openai import OpenAI
 import os
+import google.generativeai as genai
 
-MY_SECRET = os.environ.get("MY_SECRET")
 
-client = OpenAI(
-    api_key=MY_SECRET,
-    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-)
+genai.configure(api_key=os.environ.get("MY_SECRET"))
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 def chatbot(messages):
-    response = client.chat.completions.create(
-        model="gemini-2.0-flash",
-        messages=messages
-    )
-    return response.choices[0].message.content
+    # Convert OpenAI-style messages to Gemini-style
+    converted = []
+    for msg in messages:
+        converted.append({
+            "role": msg["role"],
+            "parts": [
+                {"text": msg["content"]}
+            ]
+        })
+
+    response = model.generate_content(converted)
+    return response.text
 

@@ -5,6 +5,11 @@ body {
     margin: 0;
 }
 
+header {
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+}
+
 input {
     border-color: rgb(158, 55, 255);
     width: 350px;
