@@ -48,7 +48,7 @@ def start_timer():
 
 app = Flask(__name__)
 
-VALID_ROLES = {"user", "model", "system"}
+VALID_ROLES = {"user", "assistant", "system"}
 
 def sanitize_messages(msgs):
     clean = []
