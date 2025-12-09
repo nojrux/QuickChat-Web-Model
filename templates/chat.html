@@ -16,22 +16,41 @@
 
     <hr>
 
+    <div id="status">
+        <h2 id="theme">Current Theme: Loading...</h2>
+        <h3 id="timer">Time Left: 00:00</h3>
+    </div>
+
     <div id="chat"></div>
 
     <form id="chatForm" align="center" autocomplete="off">
-    <input type="text" id="msgInput" name="msg" placeholder="Type here..."
-           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
-</form>
+        <input type="text" id="msgInput" name="msg" placeholder="Type here..."
+               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
+    </form>
 
     <script>
         const chatDiv = document.getElementById("chat");
         const form = document.getElementById("chatForm");
         const input = document.getElementById("msgInput");
+
         input.setAttribute("autocomplete", "off");
         input.setAttribute("autocorrect", "off");
         input.setAttribute("autocapitalize", "off");
         input.setAttribute("spellcheck", "false");
 
+        async function updateStatus() {
+            try {
+                const res = await fetch('/api/status');
+                const data = await res.json();
+                document.getElementById('theme').textContent = "Theme: " + data.theme;
+                document.getElementById('timer').textContent = "Time Left: " + data.timer;
+            } catch (err) {
+                console.error("Failed to fetch timer/theme:", err);
+            }
+        }
+
+        setInterval(updateStatus, 1000);
+        updateStatus();
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -57,7 +76,7 @@
             const aiMessage = document.createElement("p");
             aiMessage.align = "center";
             aiMessage.innerHTML = `<b style="color: rgb(158, 55, 255)">Dominykas:</b> ${data.response}`;
-            chatDiv.appendChild(aiMessage)
+            chatDiv.appendChild(aiMessage);
 
             chatDiv.scrollTop = chatDiv.scrollHeight;
         });
