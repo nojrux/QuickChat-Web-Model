@@ -3,26 +3,18 @@ import google.generativeai as genai
 
 genai.configure(api_key=os.environ.get("MY_SECRET"))
 
-model = genai.GenerativeModel(
-    "gemini-2.5-flash"
-)
-
 def chatbot(messages):
-
-    # Split system message from conversation
     system_instruction = ""
     converted = []
 
+    # Extract system message + convert others
     for msg in messages:
-
         role = msg["role"]
 
-        # Gemini does NOT accept `"system"` inside the message list
         if role == "system":
             system_instruction = msg["content"]
             continue
 
-        # Convert OpenAI → Gemini
         if role == "assistant":
             role = "model"
         elif role == "user":
@@ -35,10 +27,15 @@ def chatbot(messages):
             "parts": [{"text": msg["content"]}]
         })
 
-    # Generate response
-    response = model.generate_content(
-        converted,
+    # IMPORTANT: create a model with the current system_instruction
+    model = genai.GenerativeModel(
+        model_name="gemini-2.5-flash",
         system_instruction=system_instruction
+    )
+
+    # Now call generate_content WITHOUT system_instruction
+    response = model.generate_content(
+        converted
     )
 
     return response.text
