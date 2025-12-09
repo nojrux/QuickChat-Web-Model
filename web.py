@@ -68,7 +68,6 @@ def shutdown_server():
         os._exit(0)
 
 
-# Messages stored in OpenAI format, converted later
 messages = [{"role": "system", "content": ""}]
 
 
@@ -141,17 +140,13 @@ def chat_page():
 def chat():
     user_msg = request.json.get("msg")
 
-    # Store message (OpenAI style)
     messages.append({"role": "user", "content": user_msg})
 
-    # Update system message
     messages[0]["content"] = update_system_message()
 
-    # Get AI response (Gemini conversion happens in ai.py)
     safe_messages = sanitize_messages(messages)
     ai_response = chatbot(safe_messages)
 
-    # Shutdown command
     if ai_response == "//-SHUTDOWN-//":
         messages.append({"role": "assistant", "content": ai_response})
         shutdown_server()
