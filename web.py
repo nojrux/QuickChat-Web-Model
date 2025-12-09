@@ -48,6 +48,17 @@ def start_timer():
 
 app = Flask(__name__)
 
+VALID_ROLES = {"user", "model", "system"}
+
+def sanitize_messages(msgs):
+    clean = []
+    for m in msgs:
+        role = m.get("role", "").lower()
+        if role not in VALID_ROLES:
+            role = "user"
+        clean.append({"role": role, "content": m.get("content", "")})
+    return clean
+
 
 def shutdown_server():
     func = request.environ.get("werkzeug.server.shutdown")
@@ -137,7 +148,8 @@ def chat():
     messages[0]["content"] = update_system_message()
 
     # Get AI response (Gemini conversion happens in ai.py)
-    ai_response = chatbot(messages)
+    safe_messages = sanitize_messages(messages)
+    ai_response = chatbot(safe_messages)
 
     # Shutdown command
     if ai_response == "//-SHUTDOWN-//":
