@@ -7,7 +7,6 @@ def chatbot(messages):
     system_instruction = ""
     converted = []
 
-    # Extract system message + convert others
     for msg in messages:
         role = msg["role"]
 
@@ -27,13 +26,11 @@ def chatbot(messages):
             "parts": [{"text": msg["content"]}]
         })
 
-    # IMPORTANT: create a model with the current system_instruction
     model = genai.GenerativeModel(
         model_name="gemini-2.0-flash",
         system_instruction=system_instruction
     )
 
-    # Now call generate_content WITHOUT system_instruction
     response = model.generate_content(
         converted
     )
