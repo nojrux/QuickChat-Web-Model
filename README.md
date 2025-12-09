@@ -1,5 +1,5 @@
 What is QuickChat and/or it's "Web Model"?
 - QuickChat is a non-profit app being made by Topic Duo.
-- The "Web Model" is a web-accessable preview of the app and what it will look/function like once it's finished.
+- The "Web Model" is a web-accessable preview of the app and what it will look/function like once it's finished (But with an AI, instead of people).
 
 EVERYTHING HERE IS STILL A WORK IN PROGRESS
