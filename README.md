@@ -15,6 +15,12 @@ This web version is a preview of the app, featuring an AI-powered chat instead o
 
 ## Getting Started
 
+### Online
+
+Open your browser and go to: https://quickchat-web-model.onrender.com
+
+### Local
+
 Clone the repository:
 `git clone https://github.com/nojrux/QuickChat-Web-Model.git`
 
@@ -24,4 +30,4 @@ Install dependencies:
 Run the app:
 `python web.py`
 
-Open your browser and go to http://localhost:5000
+Open your browser and go to: http://localhost:5000
