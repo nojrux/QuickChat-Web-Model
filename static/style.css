@@ -71,7 +71,6 @@ header {
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     color: #333;
-    max-height: fit-content;
 }
 
 #readme-container h1 {
@@ -245,5 +244,8 @@ input {
     }
     #popup-buttons .top-row {
         flex-direction: column;
+    }
+    #readme-container {
+        margin: 30px 10px;
     }
 }
