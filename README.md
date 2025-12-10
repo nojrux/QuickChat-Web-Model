@@ -1,4 +1,4 @@
-##QuickChat
+# QuickChat
 QuickChat is a non-profit experimental chat app created by Topic Duo. It’s designed to connect users randomly for quick, themed conversations, helping people engage and interact in short, fun bursts.
 
 ##Web Model Preview
@@ -6,14 +6,14 @@ This web version is a preview of the app, featuring an AI-powered chat instead o
 
 ⚠️ Everything here is still a work in progress. Features may change, and some elements are for demonstration purposes only.
 
-####Features (Preview Version)
+## Features (Preview Version)
 - Random conversation themes updated every round.
 - Timer showing remaining time for each theme.
 - AI chat that simulates real users.
 - Memory reset and conversation control (Reset, Quit, Continue).
 - Short, fun, casual chat style.
 
-####Getting Started
+## Getting Started
 
 Clone the repository:
 - git clone https://github.com/yourusername/quickchat.git
