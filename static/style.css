@@ -25,12 +25,14 @@ header,
     flex: 1 1 auto;
     overflow-y: auto;
     padding: 10px;
-    margin-bottom: 80px; /* space for input form */
+    margin-bottom: 100px; /* space for input form */
 }
 
 #readme-container {
     flex: 1 1 auto;
     overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 100px;
 }
 
 
