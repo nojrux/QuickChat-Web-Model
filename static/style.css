@@ -16,18 +16,23 @@ body {
 /* Fixed elements should NOT grow */
 header,
 #status,
-#chatForm,
-#readme-container {
+#chatForm {
     flex: 0 0 auto;
 }
 
-/* Chat should grow + scroll */
+/* Elements that should grow + scroll */
 #chat {
     flex: 1 1 auto;
     overflow-y: auto;
     padding: 10px;
     margin-bottom: 80px; /* space for input form */
 }
+
+#readme-container {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
 
 /* ------------------ Header ------------------ */
 header {
