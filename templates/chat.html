@@ -80,6 +80,14 @@
 
             chatDiv.scrollTop = chatDiv.scrollHeight;
         });
+
+
+        
+        async function resetSession() {
+            await fetch("/api/reset", {method: "POST"});
+        }
+
+        resetSession();
     </script>
 
 </body>
