@@ -28,66 +28,126 @@
                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
     </form>
 
+    <!-- Popup -->
+    <div id="popup-bg">
+        <div id="popup-box">
+            <div id="popup-text"></div>
+            <div id="popup-buttons">
+                <div class="top-row">
+                    <button id="continueBtn">Continue</button>
+                    <button id="resetBtn">Reset</button>
+                </div>
+                <button id="quitBtn">Quit</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const chatDiv = document.getElementById("chat");
         const form = document.getElementById("chatForm");
         const input = document.getElementById("msgInput");
+        const popupBg = document.getElementById("popup-bg");
+        const popupText = document.getElementById("popup-text");
 
-        input.setAttribute("autocomplete", "off");
-        input.setAttribute("autocorrect", "off");
-        input.setAttribute("autocapitalize", "off");
-        input.setAttribute("spellcheck", "false");
+        const continueBtn = document.getElementById("continueBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const quitBtn = document.getElementById("quitBtn");
 
-        async function updateStatus() {
-            try {
-                const res = await fetch('/api/status');
-                const data = await res.json();
-                document.getElementById('theme').textContent = "Theme: " + data.theme;
-                document.getElementById('timer').textContent = "Time Left: " + data.timer;
-            } catch (err) {
-                console.error("Failed to fetch timer/theme:", err);
-            }
+        let countdown = 0;
+        let popupShown = false;
+        let countdownInterval = null;
+
+        async function initStatus() {
+            const res = await fetch('/api/status');
+            const data = await res.json();
+            document.getElementById('theme').textContent = "Current Theme: " + data.theme;
+            const [min, sec] = data.timer.split(":").map(Number);
+            countdown = min * 60 + sec;
+            updateTimerDisplay();
+            startCountdown();
         }
 
-        setInterval(updateStatus, 1000);
-        updateStatus();
+        function startCountdown() {
+            if (countdownInterval) return;
+            countdownInterval = setInterval(() => {
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                    if (!popupShown) {
+                        popupShown = true;
+                        showPopup("Time's up!");
+                    }
+                    return;
+                }
+                countdown--;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(countdown / 60);
+            const secs = countdown % 60;
+            document.getElementById('timer').textContent = `Time Left: ${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+        }
+
+        function showPopup(text) {
+            popupText.textContent = text;
+            popupBg.style.display = "flex";
+            input.disabled = true; // disable input when popup open
+        }
+
+        async function handlePopup(resetAI = false, quit = false) {
+            popupBg.style.display = "none";
+            popupShown = false;
+            input.disabled = false; // re-enable input
+
+            // Reset memory on Reset or Quit
+            if (resetAI || quit) {
+                await fetch("/api/reset_ai", { method: "POST" });
+                chatDiv.innerHTML = ""; // clear messages on screen
+            }
+
+            const res = await fetch("/api/reset", { method: "POST" });
+            const data = await res.json();
+            countdown = parseInt(data.timer.split(":")[0]) * 60 + parseInt(data.timer.split(":")[1]);
+            document.getElementById('theme').textContent = "Current Theme: " + data.theme;
+
+            if (quit) {
+                window.location.href = "/";
+                return;
+            }
+
+            startCountdown();
+        }
+
+        continueBtn.addEventListener("click", () => handlePopup(false, false));
+        resetBtn.addEventListener("click", () => handlePopup(true, false));
+        quitBtn.addEventListener("click", () => handlePopup(false, true)); // quit now clears memory too
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
-
             const msg = input.value.trim();
             if (!msg) return;
 
             const userMessage = document.createElement("p");
-            userMessage.align = "center";
             userMessage.innerHTML = `<b style="color: rgb(158, 55, 255)">You:</b> ${msg}`;
             chatDiv.appendChild(userMessage);
-
             input.value = "";
 
             const res = await fetch("/api/chat", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({msg})
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ msg })
             });
-
             const data = await res.json();
 
             const aiMessage = document.createElement("p");
-            aiMessage.align = "center";
             aiMessage.innerHTML = `<b style="color: rgb(158, 55, 255)">Dominykas:</b> ${data.response}`;
             chatDiv.appendChild(aiMessage);
-
             chatDiv.scrollTop = chatDiv.scrollHeight;
         });
 
-
-        
-        async function resetSession() {
-            await fetch("/api/reset", {method: "POST"});
-        }
-
-        resetSession();
+        initStatus();
     </script>
 
 </body>

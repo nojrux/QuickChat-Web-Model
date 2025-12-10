@@ -1,7 +1,8 @@
 import os
 import google.generativeai as genai
 
-genai.configure(api_key=os.environ.get("MY_SECRET"))
+#genai.configure(api_key=os.environ.get("MY_SECRET"))
+genai.configure(api_key="AIzaSyAb1pXeF8PKeUYYuxqzRjt9AFLmuWO4cm8")
 
 def chatbot(messages):
     system_instruction = ""
