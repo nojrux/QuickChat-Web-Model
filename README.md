@@ -16,12 +16,12 @@ This web version is a preview of the app, featuring an AI-powered chat instead o
 ## Getting Started
 
 Clone the repository:
-- git clone https://github.com/yourusername/quickchat.git
+'git clone https://github.com/yourusername/quickchat.git'
 
 Install dependencies:
-- pip install -r requirements.txt
+'pip install -r requirements.txt'
 
 Run the app:
-- python web.py
+'python web.py'
 
 Open your browser and go to http://localhost:5000
