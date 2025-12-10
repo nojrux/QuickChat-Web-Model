@@ -29,3 +29,5 @@ Run the app:
 `python web.py`
 
 Open your browser and go to: http://localhost:5000
+
+⚠️ Note: You need your own API key to run the AI locally. Set it in your environment as `MY_SECRET`.
