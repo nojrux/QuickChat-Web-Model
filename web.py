@@ -6,7 +6,7 @@ import random
 import threading
 
 # ---------- Config ----------
-ROUND_SECONDS = 60  # 1 minute per round
+ROUND_SECONDS = 180  # 1 minute per round
 timer = "00:00"
 theme = ""
 ct = time.ctime(time.time())
