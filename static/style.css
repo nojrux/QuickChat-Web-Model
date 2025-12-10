@@ -16,7 +16,8 @@ body {
 /* Fixed elements should NOT grow */
 header,
 #status,
-#chatForm {
+#chatForm,
+#readme-container {
     flex: 0 0 auto;
 }
 
