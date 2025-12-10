@@ -4,7 +4,7 @@ QuickChat is a non-profit experimental chat app created by Topic Duo. It’s des
 ## Web Model Preview
 This web version is a preview of the app, featuring an AI-powered chat instead of real users. It demonstrates the app’s interface, timer, and theme system—so you can see how QuickChat will work once it’s fully live.
 
-⚠️ Everything here is still a work in progress. Features may change, and some elements are for demonstration purposes only.
+⚠️ Everything here is still a work in progress. Features may change, and some elements are for demonstration purposes only. ⚠️
 
 ## Features (Preview Version)
 - Random conversation themes updated every round.
