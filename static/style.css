@@ -1,31 +1,49 @@
 /* ------------------ Global Styles ------------------ */
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: hidden; /* page NEVER scrolls */
+}
+
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Fixed elements should NOT grow */
+header,
+#status,
+#chatForm {
+    flex: 0 0 auto;
+}
+
+/* Chat should grow + scroll */
+#chat {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 80px; /* space for input form */
+}
+
+/* ------------------ Header ------------------ */
 header {
     background-color: rgb(240, 240, 240);
 }
 
-
-/* Header */
 #homeheader {
     padding: 10px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid;
-    border-color: #273239;
+    border-bottom: 1px solid #273239;
 }
 
 #homeheader img {
     padding-right: 50px;
     width: 307.2px;
     height: 60px;
-    vertical-align: middle;
 }
 
 #homeheader a {
@@ -42,7 +60,6 @@ header {
     transition: 0.3s;
 }
 
-
 /* ------------------ README Styles ------------------ */
 #readme-container {
     max-width: 800px;
@@ -51,7 +68,6 @@ header {
     background-color: #f8f9fa;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
 
@@ -73,10 +89,10 @@ header {
 
 #readme-container ul {
     margin-left: 1.5rem;
-    list-style-type: disc;
 }
 
-#readme-container p, #readme-container li {
+#readme-container p,
+#readme-container li {
     line-height: 1.6;
 }
 
@@ -84,11 +100,10 @@ header {
     color: #aa0000;
 }
 
-
-/* Status Section */
+/* ------------------ Status ------------------ */
 #status {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 #theme {
@@ -100,23 +115,12 @@ header {
 
 #timer {
     color: #273239;
-    font-weight: normal;
     margin: 3px 0;
 }
 
-
-/* Chat Area */
-#chat {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    margin-bottom: 75px;
-    max-height: calc(100vh - 100px);
-}
-
+/* ------------------ Chat ------------------ */
 #chat p {
     word-wrap: break-word;
-    margin: 0;
     margin-left: 500px;
     margin-right: 500px;
     padding: 5px;
@@ -124,14 +128,13 @@ header {
     font-size: medium;
 }
 
-
-/* Chat Form */
+/* ------------------ Chat Form ------------------ */
 #chatForm {
     position: fixed;
     bottom: 0;
     width: 100%;
     background: white;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 input {
@@ -144,8 +147,7 @@ input {
     font-size: medium;
 }
 
-
-/* ------------------ Popup Styles ------------------ */
+/* ------------------ Popup ------------------ */
 #popup-bg {
     position: fixed;
     top: 0;
@@ -167,8 +169,6 @@ input {
     max-width: 320px;
 }
 
-
-/* Popup Text */
 #popup-text {
     color: #273239;
     font-size: 30px;
@@ -177,25 +177,18 @@ input {
     padding: 20px;
 }
 
-
-/* Popup Buttons Container */
 #popup-buttons {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
 }
 
-
-/* Top Row (Continue + Reset) */
 #popup-buttons .top-row {
     display: flex;
     justify-content: space-between;
     gap: 10px;
 }
 
-
-/* Buttons */
 #popup-buttons button {
     flex: 1;
     padding: 10px 15px;
@@ -222,31 +215,16 @@ input {
     color: white;
 }
 
-
-/* Hover Effect */
 #popup-buttons button:hover {
     transform: scale(1.05);
     opacity: 0.9;
 }
 
-
 /* ------------------ Responsive ------------------ */
 @media (max-width: 600px) {
-    body {
-        height: auto;
-        width: 90%;
-    }
-    input {
-        margin: 0 5px;
-    }
     #chat p {
         margin-left: 20px;
         margin-right: 20px;
-    }
-    h2 {
-        margin: 10px;
-        font-size: 15px;
-        line-height: 20px;
     }
     #homeheader img {
         width: 153.6px;
@@ -255,13 +233,9 @@ input {
     }
     #homeheader a {
         font-size: 12.5px;
-        margin-right: 10px;
         padding: 0 7.5px;
     }
     #popup-buttons .top-row {
         flex-direction: column;
-    }
-    #popup-buttons button {
-        width: 100%;
     }
 }
