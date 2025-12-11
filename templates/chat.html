@@ -136,7 +136,16 @@
             if (!msg) return;
 
             const userMessage = document.createElement("p");
-            userMessage.innerHTML = `<b style="color: rgb(158, 55, 255)">You:</b> ${msg}`;
+            const userLabel = document.createElement("b");
+            
+            userLabel.style.color = "rgb(158, 55, 255)";
+            userLabel.textContent = "You: ";
+            
+            const msgText = document.createTextNode(msg);
+            
+            userMessage.appendChild(userLabel);
+            userMessage.appendChild(msgText);
+            
             chatDiv.appendChild(userMessage);
             input.value = "";
 
