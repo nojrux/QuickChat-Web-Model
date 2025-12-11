@@ -6,7 +6,6 @@
     <title>QuickChat - Preview</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='QuickChat Title Bordered.png') }}">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none'; base-uri 'self';">
 </head>
 <body>
 
@@ -155,6 +154,26 @@
         });
 
         initStatus();
+
+        function sanitize(input) {
+          const temp = document.createElement("div");
+          temp.innerHTML = input;
+        
+          // Remove script tags completely
+          temp.querySelectorAll("script").forEach(s => s.remove());
+        
+          // Remove on*="" attributes like onclick, oninput…
+          temp.querySelectorAll("*").forEach(el => {
+            [...el.attributes].forEach(attr => {
+              if (attr.name.startsWith("on")) {
+                el.removeAttribute(attr.name);
+              }
+            });
+          });
+        
+          // Keep everything else, like <b>, <i>, <svg>, etc.
+          return temp.innerHTML;
+        }
     </script>
 
 </body>
