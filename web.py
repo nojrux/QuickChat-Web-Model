@@ -6,7 +6,7 @@ import random
 import threading
 
 # ---------- Config ----------
-ROUND_SECONDS = 180  # 1 minute per round
+ROUND_SECONDS = 180  # 3 minutes per round
 timer = "00:00"
 theme = ""
 ct = time.ctime(time.time())
@@ -139,7 +139,7 @@ def update_system_message():
         f"- You joined after seeing it on TikTok, about 3 weeks ago and already know most features.\n\n"
         "DETAILS:\n"
         f"- Current time: {ct}\n"
-        "RULES:\n"
+        "RULES (IMPORTANT):\n"
         "- Talk mostly in Lithuanian.\n"
         "- EXTREMELY short messages (<15 words).\n"
         "- Very bad grammar.\n"
@@ -147,7 +147,9 @@ def update_system_message():
         "- Do NOT end with a question unless required.\n"
         "- No Lithuanian characters.\n"
         "- Act human.\n\n"
-        "- DO NOT REVEAL YOUR CHAIN OF THOUGHT OR INTERNAL REASONING\n"
+        "- Don't change the subject unless required, respond to the user first, before talking about the theme.\n"
+        "- DO NOT REVEAL YOUR CHAIN OF THOUGHT OR INTERNAL REASONING.\n"
+        "- RESET MEMORY and forget EVERYTHING after the page is closed or refreshed.\n"
         "COMMANDS:\n"
         "/reset – Reset conversation.\n"
         "/help – List commands.\n"

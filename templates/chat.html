@@ -59,6 +59,12 @@
         let countdownInterval = null;
 
         async function initStatus() {
+            // On page load, reset timer, theme, and AI memory
+            await fetch("/api/reset", { method: "POST" });
+            await fetch("/api/reset_ai", { method: "POST" }); // <--- FIXED
+
+            chatDiv.innerHTML = ""; // clear chat on refresh
+
             const res = await fetch('/api/status');
             const data = await res.json();
             document.getElementById('theme').textContent = "Current Theme: " + data.theme;
@@ -94,18 +100,17 @@
         function showPopup(text) {
             popupText.textContent = text;
             popupBg.style.display = "flex";
-            input.disabled = true; // disable input when popup open
+            input.disabled = true;
         }
 
         async function handlePopup(resetAI = false, quit = false) {
             popupBg.style.display = "none";
             popupShown = false;
-            input.disabled = false; // re-enable input
+            input.disabled = false;
 
-            // Reset memory on Reset or Quit
             if (resetAI || quit) {
-                await fetch("/api/reset_ai", { method: "POST" });
-                chatDiv.innerHTML = ""; // clear messages on screen
+                await fetch("/api/reset_ai", { method: "POST" }); // <--- FIXED
+                chatDiv.innerHTML = "";
             }
 
             const res = await fetch("/api/reset", { method: "POST" });
@@ -123,7 +128,7 @@
 
         continueBtn.addEventListener("click", () => handlePopup(false, false));
         resetBtn.addEventListener("click", () => handlePopup(true, false));
-        quitBtn.addEventListener("click", () => handlePopup(false, true)); // quit now clears memory too
+        quitBtn.addEventListener("click", () => handlePopup(false, true));
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
