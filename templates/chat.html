@@ -35,8 +35,8 @@
             <div id="popup-text"></div>
             <div id="popup-buttons">
                 <div class="top-row">
-                    <button id="continueBtn">Continue</button>
-                    <button id="resetBtn">Reset</button>
+                    <button id="continueBtn">Yes</button>
+                    <button id="resetBtn">No</button>
                 </div>
                 <button id="quitBtn">Quit</button>
             </div>
@@ -76,7 +76,7 @@
                     countdownInterval = null;
                     if (!popupShown) {
                         popupShown = true;
-                        showPopup("Time's up!");
+                        showPopup("Time's up! Do you want to continue this conversation?");
                     }
                     return;
                 }
